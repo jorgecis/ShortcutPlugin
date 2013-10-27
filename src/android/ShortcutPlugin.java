@@ -30,7 +30,7 @@ public class ShortcutPlugin extends CordovaPlugin {
 		//repeat to create is forbidden
 		shortcutintent.putExtra("duplicate", false);
 		//set the name of shortCut
-		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getLong("shortcuttext"));
+		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getString("shortcuttext"));
 		//set icon
 		Parcelable icon = Intent.ShortcutIconResource.fromContext(context, R.drawable.ic_launcher);
 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);

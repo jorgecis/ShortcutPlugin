@@ -29,13 +29,12 @@
         </config-file>
 
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="ShorctuPlugin" >
-                <param name="android-package" value="com.phonegap.plugins.shortcut"/>
+            <feature name="ShortcutPlugin" >
+                <param name="android-package" value="com.phonegap.plugins.shortcut.ShortcutPlugin"/>
             </feature>
         </config-file>
 
         <!-- cordova plugin src files -->
         <source-file src="src/android/ShortcutPlugin.java" target-dir="src/org/apache/cordova/shortcut" />
-        
     </platform>
 </plugin>
