@@ -43,7 +43,7 @@ public class ShortcutPlugin extends CordovaPlugin {
                 Intent addIntent = new Intent();
                 addIntent
                     .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
-                    .putExtra(Intent.EXTRA_SHORTCUT_NAME, "HelloWorldShortcut")
+                    .putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getLong("shortcuttext"))
                     .setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
                 getApplicationContext().sendBroadcast(addIntent);
 

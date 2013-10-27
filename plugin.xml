@@ -32,5 +32,4 @@
         <source-file src="src/android/ShortcutPlugin.java" target-dir="src/org/apache/cordova/shortcut" />
         
     </platform>
-    
 </plugin>

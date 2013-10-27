@@ -10,4 +10,17 @@ var ShortcutPlugin = {
             }]
         );
     }
+    DeleteShortcut: function(shortcut_text, successCallback, errorCallback) {
+        cordova.exec(
+            successCallback,
+            errorCallback,
+            'ShortcutPlugin',
+            'delShortcut',
+            [{ 
+                "shortcuttext": shortcut_text
+            }]
+        );
+    }
+
+
 }
