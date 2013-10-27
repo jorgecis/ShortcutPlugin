@@ -1,5 +1,5 @@
 package com.phonegap.plugins.shortcut;
- 
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONObject;
@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import android.content.Intent;
 import android.content.Context;
+import android.os.Parcelable; 
 
 public class ShortcutPlugin extends CordovaPlugin {
     public static final String ACTION_ADD_SHORTCUT = "addShortcut"; 
@@ -18,29 +19,32 @@ public class ShortcutPlugin extends CordovaPlugin {
         try {
             if (ACTION_ADD_SHORTCUT.equals(action)) {
                 JSONObject arg_object = args.getJSONObject(0);
-
                 Context context=this.cordova.getActivity().getApplicationContext();
-                Intent shortcutIntent = new Intent(context,
-                    MainActivity.class);
-     
-                shortcutIntent.setAction(Intent.ACTION_MAIN);
- 
-                Intent addIntent = new Intent();
-                addIntent
-                    .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
-                    .putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getLong("shortcuttext"))
-                    .putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                    Intent.ShortcutIconResource.fromContext(context,
-                    R.drawable.ic_launcher))
-                    .setAction("com.android.launcher.action.INSTALL_SHORTCUT");
-                context.sendBroadcast(addIntent);
+
+		Intent i = new Intent();
+		i.setClassName(context.getPackageName(), context.getPackageName());
+		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+		Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
+		//repeat to create is forbidden
+		shortcutintent.putExtra("duplicate", false);
+		//set the name of shortCut
+		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getLong("shortcuttext"));
+		//set icon
+		Parcelable icon = Intent.ShortcutIconResource.fromContext(context, R.drawable.ic_launcher);
+		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
+		//set the application to lunch when you click the icon
+		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, i);
+		//sendBroadcast,done
+		context.sendBroadcast(shortcutintent);
 
                 callbackContext.success();
                 return true;
             } else if (ACTION_ADD_SHORTCUT.equals(action)) {
                 JSONObject arg_object = args.getJSONObject(0);
                 Context context=this.cordova.getActivity().getApplicationContext();
-                Intent shortcutIntent = new Intent(context,
+                /* Intent shortcutIntent = new Intent(context,
                     MainActivity.class);
                 shortcutIntent.setAction(Intent.ACTION_MAIN);
      
@@ -50,6 +54,8 @@ public class ShortcutPlugin extends CordovaPlugin {
                     .putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getLong("shortcuttext"))
                     .setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
                 context.sendBroadcast(addIntent);
+                */
+                callbackContext.success();
 
             } 
             callbackContext.error("Invalid action");
