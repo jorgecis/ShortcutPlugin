@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 import android.content.Intent;
+import android.content.Context;
 
 public class ShortcutPlugin extends CordovaPlugin {
     public static final String ACTION_ADD_SHORTCUT = "addShortcut"; 
@@ -19,7 +20,7 @@ public class ShortcutPlugin extends CordovaPlugin {
                 JSONObject arg_object = args.getJSONObject(0);
 
                 Context context=this.cordova.getActivity().getApplicationContext();
-                Intent shortcutIntent = new Intent(Context,
+                Intent shortcutIntent = new Intent(context,
                     MainActivity.class);
      
                 shortcutIntent.setAction(Intent.ACTION_MAIN);
@@ -29,16 +30,17 @@ public class ShortcutPlugin extends CordovaPlugin {
                     .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
                     .putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getLong("shortcuttext"))
                     .putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                    Intent.ShortcutIconResource.fromContext(Context,
+                    Intent.ShortcutIconResource.fromContext(context,
                     R.drawable.ic_launcher))
                     .setAction("com.android.launcher.action.INSTALL_SHORTCUT");
-                Context.sendBroadcast(addIntent);
+                context.sendBroadcast(addIntent);
 
                 callbackContext.success();
                 return true;
             } else if (ACTION_ADD_SHORTCUT.equals(action)) {
+                JSONObject arg_object = args.getJSONObject(0);
                 Context context=this.cordova.getActivity().getApplicationContext();
-                Intent shortcutIntent = new Intent(Context,
+                Intent shortcutIntent = new Intent(context,
                     MainActivity.class);
                 shortcutIntent.setAction(Intent.ACTION_MAIN);
      
@@ -47,7 +49,7 @@ public class ShortcutPlugin extends CordovaPlugin {
                     .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
                     .putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getLong("shortcuttext"))
                     .setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
-                Context.sendBroadcast(addIntent);
+                context.sendBroadcast(addIntent);
 
             } 
             callbackContext.error("Invalid action");
