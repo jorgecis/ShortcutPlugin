@@ -18,7 +18,8 @@ public class ShortcutPlugin extends CordovaPlugin {
             if (ACTION_ADD_SHORTCUT.equals(action)) {
                 JSONObject arg_object = args.getJSONObject(0);
 
-                Intent shortcutIntent = new Intent(getApplicationContext(),
+                Context context=this.cordova.getActivity().getApplicationContext();
+                Intent shortcutIntent = new Intent(Context,
                     MainActivity.class);
      
                 shortcutIntent.setAction(Intent.ACTION_MAIN);
@@ -28,15 +29,16 @@ public class ShortcutPlugin extends CordovaPlugin {
                     .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
                     .putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getLong("shortcuttext"))
                     .putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                    Intent.ShortcutIconResource.fromContext(getApplicationContext(),
+                    Intent.ShortcutIconResource.fromContext(Context,
                     R.drawable.ic_launcher))
                     .setAction("com.android.launcher.action.INSTALL_SHORTCUT");
-                getApplicationContext().sendBroadcast(addIntent);
+                Context.sendBroadcast(addIntent);
 
                 callbackContext.success();
                 return true;
             } else if (ACTION_ADD_SHORTCUT.equals(action)) {
-                Intent shortcutIntent = new Intent(getApplicationContext(),
+                Context context=this.cordova.getActivity().getApplicationContext();
+                Intent shortcutIntent = new Intent(Context,
                     MainActivity.class);
                 shortcutIntent.setAction(Intent.ACTION_MAIN);
      
@@ -45,7 +47,7 @@ public class ShortcutPlugin extends CordovaPlugin {
                     .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
                     .putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getLong("shortcuttext"))
                     .setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
-                getApplicationContext().sendBroadcast(addIntent);
+                Context.sendBroadcast(addIntent);
 
             } 
             callbackContext.error("Invalid action");
