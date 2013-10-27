@@ -1,4 +1,4 @@
-package com.example.shortcutplugin;
+package com.phonegap.plugins.shortcut;
  
 import org.apache.cordova.api.CallbackContext;
 import org.apache.cordova.api.CordovaPlugin;
