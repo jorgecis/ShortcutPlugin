@@ -1,6 +1,6 @@
-var Shortcut = function() {}; 
+var ShortcutPlugin = function() {}; 
 
-Shortcut.prototype.CreateShortcut = function (shortcut_text, successCallback, errorCallback) {
+ShortcutPlugin.prototype.CreateShortcut = function (shortcut_text, successCallback, errorCallback) {
         cordova.exec(
             successCallback,
             errorCallback,
@@ -11,7 +11,7 @@ Shortcut.prototype.CreateShortcut = function (shortcut_text, successCallback, er
             }]
         );
 };
-Shortcut.prototype.RemoveShortcut = function(shortcut_text, successCallback, errorCallback) {
+ShortcutPlugin.prototype.RemoveShortcut = function(shortcut_text, successCallback, errorCallback) {
         cordova.exec(
             successCallback,
             errorCallback,
