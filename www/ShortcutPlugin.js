@@ -1,6 +1,6 @@
 var Shortcut = function() {}; 
 
-Shortcut.prototype.CreateShortcut: = function (shortcut_text, successCallback, errorCallback) {
+Shortcut.prototype.CreateShortcut = function (shortcut_text, successCallback, errorCallback) {
         cordova.exec(
             successCallback,
             errorCallback,
@@ -11,7 +11,7 @@ Shortcut.prototype.CreateShortcut: = function (shortcut_text, successCallback, e
             }]
         );
 };
-Shortcut.prototype.RemoveShortcut: function(shortcut_text, successCallback, errorCallback) {
+Shortcut.prototype.RemoveShortcut function(shortcut_text, successCallback, errorCallback) {
         cordova.exec(
             successCallback,
             errorCallback,
