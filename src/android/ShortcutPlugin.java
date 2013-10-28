@@ -27,42 +27,40 @@ public class ShortcutPlugin extends CordovaPlugin {
                 Context context=this.cordova.getActivity().getApplicationContext();
 		PackageManager pm = context.getPackageManager();
 
-		Intent shortcutIntent = new Intent();
-		shortcutIntent.setClassName(this.cordova.getActivity().getPackageName(), this.cordova.getActivity().getClass().getName());
-		shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		Intent i = new Intent();
+		i.setClassName(this.cordova.getActivity().getPackageName(), this.cordova.getActivity().getClass().getName());
+		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
 		Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
 		shortcutintent.putExtra("duplicate", false);
 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getString("shortcuttext"));
 
 		//Get Icon
-		ResolveInfo ri = pm.resolveActivity(shortcutIntent, 0);
+		ResolveInfo ri = pm.resolveActivity(i, 0);
 		int iconId = ri.activityInfo.applicationInfo.icon;
 		Parcelable icon = Intent.ShortcutIconResource.fromContext(context, iconId);
 
 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
-		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, i);
 		context.sendBroadcast(shortcutintent);
 
                 callbackContext.success();
                 return true;
             } else if (ACTION_ADD_SHORTCUT.equals(action)) {
                 JSONObject arg_object = args.getJSONObject(0);
-                Context context=this.cordova.getActivity().getApplicationContext();
-                /* Intent shortcutIntent = new Intent(context,
-                    MainActivity.class);
-                shortcutIntent.setAction(Intent.ACTION_MAIN);
-     
-                Intent addIntent = new Intent();
-                addIntent
-                    .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
-                    .putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getLong("shortcuttext"))
-                    .setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
-                context.sendBroadcast(addIntent);
-                */
-                callbackContext.success();
+		Context context=this.cordova.getActivity().getApplicationContext();
 
+		Intent i = new Intent();
+		i.setClassName(this.cordova.getActivity().getPackageName(), this.cordova.getActivity().getClass().getName());
+		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+		Intent shortcutintent = new Intent("com.android.launcher.action.UNINSTALL_SHORTCUT");
+		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getString("shortcuttext"));
+		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, i);
+                context.sendBroadcast(shortcutintent);
+                callbackContext.success();
             } 
             callbackContext.error("Invalid action");
             return false;
