@@ -22,12 +22,11 @@ Note: This plugin is for phonegap 3.x
 
 ## How to use it
 
-  Insert the js 
+  Insert the js file, something like this 
 
   <script type="text/javascript" src="js/ShortcutPlugin.js"></script>
 
-  To add a shotcut do
-
+  To add a shotcut is very easy, just do the following.
   <script>
      window.plugins.Shortcut.CreateShortcut("Text to show", successfunc, failfunc );
   </script>
