@@ -17,17 +17,19 @@ Note: This plugin is for phonegap 3.x
 
   add com.phonegap.plugins.shortcut to your config.xml
 
+```
   <gap:plugin name="com.phonegap.plugins.shortcut" />
-
+```
 
 ## How to use it
 
-  Insert the js 
-
+  Insert the js file, something like this 
+```
   <script type="text/javascript" src="js/ShortcutPlugin.js"></script>
-
-  To add a shotcut do
-
+```
+  To add a shotcut is very easy, just do the following.
+```
   <script>
      window.plugins.Shortcut.CreateShortcut("Text to show", successfunc, failfunc );
   </script>
+```
