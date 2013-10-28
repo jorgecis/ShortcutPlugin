@@ -8,6 +8,8 @@ import org.json.JSONException;
 import android.content.Intent;
 import android.content.Context;
 import android.os.Parcelable; 
+import android.content.pm.ResolveInfo;
+import android.content.pm.PackageManager;
 
 public class ShortcutPlugin extends CordovaPlugin {
     public static final String ACTION_ADD_SHORTCUT = "addShortcut"; 
@@ -18,25 +20,29 @@ public class ShortcutPlugin extends CordovaPlugin {
 
         try {
             if (ACTION_ADD_SHORTCUT.equals(action)) {
-                JSONObject arg_object = args.getJSONObject(0);
-                Context context=this.cordova.getActivity().getApplicationContext();
 
-		Intent i = new Intent();
-		i.setClassName(context.getPackageName(), context.getPackageName());
-		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		//Get params
+                JSONObject arg_object = args.getJSONObject(0);
+
+                Context context=this.cordova.getActivity().getApplicationContext();
+		PackageManager pm = context.getPackageManager();
+
+		Intent shortcutIntent = new Intent();
+		shortcutIntent.setClassName(this.cordova.getActivity().getPackageName(), this.cordova.getActivity().getClass().getName());
+		shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
 		Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
-		//repeat to create is forbidden
 		shortcutintent.putExtra("duplicate", false);
-		//set the name of shortCut
 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, arg_object.getString("shortcuttext"));
-		//set icon
-		Parcelable icon = Intent.ShortcutIconResource.fromContext(context, R.drawable.ic_launcher);
+
+		//Get Icon
+		ResolveInfo ri = pm.resolveActivity(shortcutIntent, 0);
+		int iconId = ri.activityInfo.applicationInfo.icon;
+		Parcelable icon = Intent.ShortcutIconResource.fromContext(context, iconId);
+
 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
-		//set the application to lunch when you click the icon
-		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, i);
-		//sendBroadcast,done
+		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
 		context.sendBroadcast(shortcutintent);
 
                 callbackContext.success();
