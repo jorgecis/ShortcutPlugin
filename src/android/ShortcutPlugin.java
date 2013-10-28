@@ -47,7 +47,7 @@ public class ShortcutPlugin extends CordovaPlugin {
 
                 callbackContext.success();
                 return true;
-            } else if (ACTION_ADD_SHORTCUT.equals(action)) {
+            } else if (ACTION_DEL_SHORTCUT.equals(action)) {
                 JSONObject arg_object = args.getJSONObject(0);
 		Context context=this.cordova.getActivity().getApplicationContext();
 
