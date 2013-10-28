@@ -4,7 +4,7 @@
 
 ## DESCRIPTION
 
-This plugin is for use with [Cordova](http://incubator.apache.org/cordova/), and allows your application to add or remove shortcuts in the android hone. 
+This plugin is for use with [Cordova](http://incubator.apache.org/cordova/), and allows your application to add or remove shortcuts in the android home. 
 
 Note: This plugin is for phonegap 3.x
 
