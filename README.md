@@ -17,8 +17,9 @@ Note: This plugin is for phonegap 3.x
 
   add com.phonegap.plugins.shortcut to your config.xml
 
+```
   <gap:plugin name="com.phonegap.plugins.shortcut" />
-
+```
 
 ## How to use it
 
