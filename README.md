@@ -13,8 +13,8 @@ Note: This plugin is for phonegap 3.x
 
 	The MIT License
 
-	Copyright (c) 2012 Adobe Systems, inc.
-	portions Copyright (c) 2012 Olivier Louvignes
+	Copyright (c) 2013 Adobe Systems, inc.
+	portions Copyright (c) 2013 Jorge Cisneros jorgecis@gmail.com
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
