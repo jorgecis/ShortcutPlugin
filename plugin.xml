@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.phonegap.plugins.shortcut"
+    id="com.plugins.shortcut"
     version="0.1.1">
 
     <name>Home Shortcuts</name>
@@ -13,9 +13,11 @@
       of any andorid device.&lt;/p&gt;
     </description>
     
-    <license>Apache 2.0</license>
+    <license>MIT</license>
     
-    <asset src="www/ShortcutPlugin.js" target="ShortcutPlugin.js" />
+    <js-module src="www/ShortcutPlugin.js" name="ShortcutPlugin">
+         <clobbers target="ShortcutPlugin" />
+    </js-module>
     
     <engines>
       <engine name="cordova" version=">=3.0.0" />
@@ -30,7 +32,7 @@
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="ShortcutPlugin" >
-                <param name="android-package" value="com.phonegap.plugins.shortcut.ShortcutPlugin"/>
+                <param name="android-package" value="com.plugins.shortcut.ShortcutPlugin"/>
             </feature>
         </config-file>
 

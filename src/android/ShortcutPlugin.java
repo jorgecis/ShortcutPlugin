@@ -1,4 +1,6 @@
-package com.phonegap.plugins.shortcut;
+//Copyright 2013 Jorge Cisneros jorgecis@gmail.com
+
+package com.plugins.shortcut;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;

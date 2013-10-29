@@ -1,3 +1,5 @@
+//Copyright 2013 Jorge Cisneros jorgecis@gmail.com
+
 var ShortcutPlugin = function() {}; 
 
 ShortcutPlugin.prototype.CreateShortcut = function (shortcut_text, successCallback, errorCallback) {

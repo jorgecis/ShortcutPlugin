@@ -15,10 +15,10 @@ Note: This plugin is for phonegap 3.x
 
 ## To used in the build phonegap service (Not aproved at this moment)
 
-  add com.phonegap.plugins.shortcut to your config.xml
+  add com.plugins.shortcut to your config.xml
 
 ```
-  <gap:plugin name="com.phonegap.plugins.shortcut" />
+  <gap:plugin name="com.plugins.shortcut" />
 ```
 
 ## How to use it
