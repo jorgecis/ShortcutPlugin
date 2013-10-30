@@ -39,7 +39,7 @@ Note: This plugin is for phonegap 3.x
 
   cordova plugins add https://github.com/jorgecis/ShortcutPlugin.git
 
-## To used in the build phonegap service (Not aproved at this moment)
+## To used in the build phonegap service 
 
   add com.plugins.shortcut to your config.xml
 
@@ -59,3 +59,4 @@ Note: This plugin is for phonegap 3.x
      window.plugins.Shortcut.CreateShortcut("Text to show", successfunc, failfunc );
   </script>
 ```
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jorgecis/shortcutplugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
