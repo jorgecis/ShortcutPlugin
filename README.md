@@ -59,4 +59,5 @@ Note: This plugin is for phonegap 3.x
      window.plugins.Shortcut.CreateShortcut("Text to show", successfunc, failfunc );
   </script>
 ```
+
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jorgecis/shortcutplugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
